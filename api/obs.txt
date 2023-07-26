@@ -1,0 +1,9 @@
+Tem alguma boa prática que separe as declarações de dependência?
+
+E boa prática de separação de funções?
+
+Adicionar dbname e collection em config
+
+Deixar 'ProximosTopFas' escondido de possiveis fãs dev
+
+Prettier?
