@@ -1,0 +1,21 @@
+<h1>Peça aqui o seu top fã!</h1>
+<img src="../../assets/images/img.jpg" alt="Logo do Mau Acompanhado" width="320" height="320">
+<form class="form-container">
+    <div class="form">
+        <label for="nome">Seu nome: <input type="text" id="nome" name="nome" #nome></label>
+        <label for="top-fa">Top fã de: 
+            <select id="top-fa" name="top-fa" #topfa>
+                <option value="" selected>Select Documents</option>
+                <option *ngFor="let opcao of opcoes">{{opcao.nome}}</option>
+            </select>
+        </label>
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" #mensagem>Sua mensagem</textarea>
+    </div>
+    <div>
+        <button type="button" (click)="incluiTopFa(nome.value, topfa.value, mensagem.value)">Enviar</button>
+      </div> 
+</form>
+
+<p *ngIf="formInvalid">Por favor, preencha todos os campos.</p>
+<p *ngIf="feedback">{{feedback}}</p>
