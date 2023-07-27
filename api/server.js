@@ -26,7 +26,6 @@ app.post('/TopFa', async (req, res) => {
     }
     catch(e) {
         res.status(500).send(JSON.stringify(e))
-        //adicionar log de erro
     }
 })
 
@@ -37,7 +36,6 @@ app.get('/ProximosTopFas', async (req, res) => {
     }
     catch(e) {
         res.status(500).send(JSON.stringify(e))
-        //adicionar log de erro
     }
 })
 

@@ -1,1 +1,27 @@
-<p>proximos-top-fas works!</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Top fã</th>
+      <th>Mensagem</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of listaProximos">
+      <td><input type="checkbox" [value]="p._id" (change)="alternarCheckbox(p._id)"></td>
+      <td>{{ p.nome }}</td>
+      <td>{{ p.topfa }}</td>
+      <td>{{ p.mensagem }}</td>
+      <td>{{ p.dataHora }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button type="button" (click)="copiarTexto()">Copiar texto</button>
+  <button type="button" (click)="remover()">Remover da lista</button>
+</div> 
+
+<p *ngIf="feedback">{{feedback}}</p>

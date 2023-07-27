@@ -7,3 +7,7 @@ Adicionar dbname e collection em config
 Deixar 'ProximosTopFas' escondido de possiveis fãs dev
 
 Prettier?
+
+Adicionar log de erro no server
+
+Transformar em https
