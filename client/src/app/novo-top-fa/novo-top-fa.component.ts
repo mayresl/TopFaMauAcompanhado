@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 import { NovoTopFaService } from './novo-top-fa.service';
+import { OpcoesTopFa } from 'src/assets/opcoes-top-fa'
 
 @Component({
   selector: 'app-novo-top-fa',
@@ -10,16 +10,10 @@ import { NovoTopFaService } from './novo-top-fa.service';
   styleUrls: ['./novo-top-fa.component.css']
 })
 export class NovoTopFaComponent {
-  constructor(private httpClient: HttpClient, private topFaService: NovoTopFaService) {}
+  constructor(private topFaService: NovoTopFaService) {}
   formInvalid = false;
   feedback = "";
-  opcoes: any = [];
-
-  ngOnInit(){
-    this.httpClient.get("assets/opcoes-top-fa.json").subscribe(data =>{
-      this.opcoes = (data as any).opcoes;
-    })
-  }
+  opcoes = OpcoesTopFa;
 
   async incluiTopFa(nome: string, topfa: string, mensagem: string) {
     if (nome == "" || topfa == "" || mensagem == "") {
@@ -35,5 +29,9 @@ export class NovoTopFaComponent {
       var r = await this.topFaService.incluirTopFa(obj);
       this.feedback = r.replaceAll("\"", "");
     }   
+  }
+
+  limpaFeedback() {
+    this.formInvalid = false;
   }
 }

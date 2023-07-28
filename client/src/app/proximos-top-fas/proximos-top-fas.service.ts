@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Clipboard } from '@angular/cdk/clipboard'
+import { firstValueFrom } from 'rxjs';
 
 import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model'
 
@@ -8,19 +9,22 @@ import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model'
 export class ProximosTopFasService {
   constructor(private http: HttpClient, private clipboard: Clipboard) {}
 
-  consultaTopFas () {
-    return this.http.get('/api/ProximosTopFas');
+  consultaTopFas(topfa: string) {
+    let params = new HttpParams().set('topfa', topfa);
+    return this.http.get('/api/ProximosTopFas', { params: params});
   }
 
-  copiarTexto (valoresSelecionados: number[], listaProximos: ProximosTopFasModel[]) {
+  copiarTexto(selecionados: ProximosTopFasModel[]) {
     var texto = "";
-    valoresSelecionados.forEach(id => {
-      var aItem = listaProximos.filter(p => p._id == id);
-      if (aItem.length > 0) {
-        var item = aItem[0];
+    selecionados.forEach(item => {      
         texto += item.nome + ": " + item.mensagem + "\n";
-      }
     });
     this.clipboard.copy(texto);
+  }
+
+  async remover(selecionados: ProximosTopFasModel[]) {
+    const source$ = this.http.put('/api/TopFas', selecionados, { responseType: 'text' as 'text', withCredentials: false });
+    const response = await firstValueFrom(source$);
+    return response;
   }
 }

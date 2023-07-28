@@ -1,10 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const {MongoClient} = require('mongodb');
+const dadosService = require("./src/services/dadosService");
 
 const app = express()
 const port = 3000;
-const uri = "mongodb://root:example@127.0.0.1:27017/"
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,7 +20,7 @@ app.post('/TopFa', async (req, res) => {
     });
 
     try {
-        await incluirTopFa(documento)
+        await dadosService.incluirTopFa(documento)
         res.status(200).send(JSON.stringify('Tudo certo! É só aguardar a gravação do programa.'))
     }
     catch(e) {
@@ -30,8 +29,9 @@ app.post('/TopFa', async (req, res) => {
 })
 
 app.get('/ProximosTopFas', async (req, res) => {
+    let param = req.query
     try {
-        var topfas = await consultaTopFas()
+        var topfas = await dadosService.consultaTopFas(param.topfa)
         res.status(200).send(topfas)
     }
     catch(e) {
@@ -39,34 +39,24 @@ app.get('/ProximosTopFas', async (req, res) => {
     }
 })
 
-async function incluirTopFa(documento) {
-    const client = new MongoClient(uri);
-    try {
-      await client.connect();
-      const db = client.db("mauacompanhadoBD");
-      const collection = db.collection("topfas");
-      result = await collection.insertOne(documento);
-    } catch (e) {
-        throw e;
-    }
-    finally {
-      setTimeout(() => {client.close()}, 1500)
-    }
-}
+app.put('/TopFas', async (req, res) => {
+    let documents = req.body
+    error = false;
+    msg = "";
 
-async function consultaTopFas() {
-    const client = new MongoClient(uri);
-    var data = []
-    try {
-      await client.connect();
-      const db = client.db("mauacompanhadoBD");
-      data = await db.collection('topfas').find({ status: "Enviado" }).sort({ dataHora: 1 }).toArray();
-    } catch (e) {
-        throw e;
+    await documents.forEach(document => {
+        try {
+            dadosService.alteraStatusTopFa(document)
+        }
+        catch (e) {
+            error = true;
+        }
+    });
+
+    if (error) {
+        res.status(500).send(JSON.stringify('Nem todos os registros foram atualizados. Por favor, tente novamente.'))
     }
-    finally {
-      setTimeout(() => {client.close()}, 1500)
+    else {
+        res.status(200).send(JSON.stringify('Pronto! Registros foram marcados como lidos.'))
     }
-  
-    return data
-}
+})
