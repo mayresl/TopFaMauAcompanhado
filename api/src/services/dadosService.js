@@ -1,10 +1,20 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient, ServerApiVersion} = require('mongodb');
 var ObjectID = require('mongodb').ObjectId;
 
-const uri = "mongodb://root:example@127.0.0.1:27017/"
+var dotenv = require('dotenv');
+dotenv.config();
 
-async function incluirTopFa(documento) {
-    const client = new MongoClient(uri);
+const uri = process.env.MONGO_URI;
+
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function incluiTopFa(documento) {
     try {
       await client.connect();
       const db = client.db("mauacompanhadoBD");
@@ -19,7 +29,6 @@ async function incluirTopFa(documento) {
 }
 
 async function consultaTopFas(topfa) {
-    const client = new MongoClient(uri);
     var data = []
     try {
       await client.connect();
@@ -40,7 +49,6 @@ async function consultaTopFas(topfa) {
 }
 
 async function alteraStatusTopFa(document) {
-    const client = new MongoClient(uri);
     try {
       await client.connect();
       const db = client.db("mauacompanhadoBD");
@@ -54,5 +62,4 @@ async function alteraStatusTopFa(document) {
     }
 }
 
-
-module.exports = { incluirTopFa, consultaTopFas, alteraStatusTopFa }
+module.exports = { incluiTopFa, consultaTopFas, alteraStatusTopFa }

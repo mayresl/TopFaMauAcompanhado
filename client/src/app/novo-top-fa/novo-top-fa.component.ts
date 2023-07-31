@@ -14,24 +14,38 @@ export class NovoTopFaComponent {
   formInvalid = false;
   feedback = "";
   opcoes = OpcoesTopFa;
+  formulario = {
+    nome: "",
+    topfa: "",
+    mensagem: ""
+  }
 
-  async incluiTopFa(nome: string, topfa: string, mensagem: string) {
-    if (nome == "" || topfa == "" || mensagem == "") {
+  async incluiTopFa() {
+    if (this.formulario.nome == "" || this.formulario.topfa == "" || this.formulario.mensagem == "") {
       this.formInvalid = true;
     }
     else {
       this.formInvalid = false;
       var obj = {
-        nome: nome,
-        topfa: topfa,
-        mensagem: mensagem
+        nome: this.formulario.nome,
+        topfa: this.formulario.topfa,
+        mensagem: this.formulario.mensagem
       }
-      var r = await this.topFaService.incluirTopFa(obj);
+      var r = await this.topFaService.incluiTopFa(obj);
       this.feedback = r.replaceAll("\"", "");
+      this.limpaFormulario();
     }   
   }
 
   limpaFeedback() {
     this.formInvalid = false;
+  }
+
+  limpaFormulario() {
+    this.formulario = {
+      nome: "",
+      topfa: "",
+      mensagem: ""
+    }
   }
 }

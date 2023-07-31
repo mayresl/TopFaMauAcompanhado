@@ -9,7 +9,7 @@
 <table>
   <thead>
     <tr>
-      <th><input type="checkbox" (change)="marcarDesmarcarTodas($event)" [(ngModel)]="checkboxTodos"></th>
+      <th><input type="checkbox" (change)="marcaDesmarcaTodas($event)" [(ngModel)]="checkboxTodos"></th>
       <th>Nome</th>
       <th>Top fã</th>
       <th>Mensagem</th>
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of listaProximos">
-      <td><input type="checkbox" [value]="p._id" [checked]="estaMarcado(p._id)" (change)="alternarCheckbox(p._id)"></td>
+      <td><input type="checkbox" [value]="p._id" [checked]="estaMarcado(p._id)" (change)="alternaCheckbox(p._id)"></td>
       <td>{{ p.nome }}</td>
       <td>{{ p.topfa }}</td>
       <td>{{ p.mensagem }}</td>
@@ -28,8 +28,8 @@
 </table>
 
 <div>
-  <button type="button" (click)="copiarTexto()">Copiar texto</button>
-  <button type="button" (click)="remover()">Remover da lista</button>
+  <button type="button" (click)="copiaTexto()">Copiar texto</button>
+  <button type="button" (click)="removeTopFas()">Remover da lista</button>
 </div> 
 
 <p *ngIf="feedback">{{feedback}}</p>

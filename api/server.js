@@ -20,7 +20,7 @@ app.post('/TopFa', async (req, res) => {
     });
 
     try {
-        await dadosService.incluirTopFa(documento)
+        await dadosService.incluiTopFa(documento)
         res.status(200).send(JSON.stringify('Tudo certo! É só aguardar a gravação do programa.'))
     }
     catch(e) {

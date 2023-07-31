@@ -6,7 +6,7 @@ import { firstValueFrom } from 'rxjs';
 export class NovoTopFaService {
   constructor(private http: HttpClient) {}
 
-  async incluirTopFa(obj: Object) {
+  async incluiTopFa(obj: Object) {
     const source$ = this.http.post('/api/TopFa', obj, { responseType: 'text' as 'text', withCredentials: false });
     const response = await firstValueFrom(source$);
     return response;

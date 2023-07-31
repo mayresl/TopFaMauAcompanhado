@@ -14,7 +14,7 @@ export class ProximosTopFasService {
     return this.http.get('/api/ProximosTopFas', { params: params});
   }
 
-  copiarTexto(selecionados: ProximosTopFasModel[]) {
+  copiaTexto(selecionados: ProximosTopFasModel[]) {
     var texto = "";
     selecionados.forEach(item => {      
         texto += item.nome + ": " + item.mensagem + "\n";
@@ -22,7 +22,7 @@ export class ProximosTopFasService {
     this.clipboard.copy(texto);
   }
 
-  async remover(selecionados: ProximosTopFasModel[]) {
+  async removeTopFas(selecionados: ProximosTopFasModel[]) {
     const source$ = this.http.put('/api/TopFas', selecionados, { responseType: 'text' as 'text', withCredentials: false });
     const response = await firstValueFrom(source$);
     return response;

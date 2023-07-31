@@ -32,24 +32,24 @@ export class ProximosTopFasComponent {
     });
   }
 
-  copiarTexto() {
+  copiaTexto() {
     this.selecionados = [];
-    if (this.validarTabela()) {
-      this.proximosTopFasService.copiarTexto(this.selecionados);
+    if (this.validaTabela()) {
+      this.proximosTopFasService.copiaTexto(this.selecionados);
       this.feedback = ""
     }
   }
 
-  async remover() {
+  async removeTopFas() {
     this.selecionados = [];
-    if (this.validarTabela()) {
-      var r = await this.proximosTopFasService.remover(this.selecionados);
+    if (this.validaTabela()) {
+      var r = await this.proximosTopFasService.removeTopFas(this.selecionados);
       this.feedback = r.replaceAll("\"", ""); 
       this.consultaTopFas("");     
     }
   }  
 
-  alternarCheckbox(id: number): void {
+  alternaCheckbox(id: number): void {
     this.feedback = ""
     if (this.valoresSelecionados.includes(id)) {
       this.valoresSelecionados = this.valoresSelecionados.filter((item) => item !== id);
@@ -58,9 +58,9 @@ export class ProximosTopFasComponent {
     }
   }
 
-  validarTabela() {
+  validaTabela() {
     if (this.valoresSelecionados.length > 0) {
-      this.filtrarSelecao();
+      this.filtraSelecao();
       return true;
     }
     else {
@@ -69,7 +69,7 @@ export class ProximosTopFasComponent {
     }
   }
 
-  filtrarSelecao() {    
+  filtraSelecao() {    
     this.valoresSelecionados.forEach(id => {
       var aItem = this.listaProximos.filter(p => p._id == id);
       if (aItem.length > 0) {
@@ -78,7 +78,8 @@ export class ProximosTopFasComponent {
     });
   }
 
-  marcarDesmarcarTodas(evento: any) {
+  marcaDesmarcaTodas(evento: any) {
+    this.feedback = "";
     if (evento.target.checked) {
       this.listaProximos.forEach(item => {
         if (!this.valoresSelecionados.includes(item._id)) {
