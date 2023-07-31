@@ -1,6 +1,8 @@
 const {MongoClient, ServerApiVersion} = require('mongodb');
 var ObjectID = require('mongodb').ObjectId;
 
+const { logger } = require('./loggerService');
+
 var dotenv = require('dotenv');
 dotenv.config();
 
@@ -21,7 +23,8 @@ async function incluiTopFa(documento) {
       const collection = db.collection("topfas");
       result = await collection.insertOne(documento);
     } catch (e) {
-        throw e;
+      logger.trace(e);
+      throw new Error(e);
     }
     finally {
       setTimeout(() => {client.close()}, 1500)
@@ -39,7 +42,8 @@ async function consultaTopFas(topfa) {
       }
       data = await db.collection('topfas').find(query).sort({ dataHora: 1 }).toArray();
     } catch (e) {
-        throw e;
+      logger.trace(e);
+      throw new Error(e);
     }
     finally {
       setTimeout(() => {client.close()}, 1500)
@@ -55,7 +59,8 @@ async function alteraStatusTopFa(document) {
       const collection = db.collection("topfas");
       result = await collection.updateOne({ "_id": new ObjectID(document._id) }, { $set: {"status": "Mencionado" } });
     } catch (e) {
-        throw e;
+      logger.trace(e);
+      throw new Error(e);
     }
     finally {
       setTimeout(() => {client.close()}, 1500)
