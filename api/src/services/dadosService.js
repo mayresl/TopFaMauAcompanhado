@@ -12,11 +12,14 @@ const client = new MongoClient(config.MONGO_URI, {
   }
 });
 
+const mongoDB = config.MONGO_DB;
+const mongoCollection = config.MONGO_COLLECTION;
+
 async function incluiTopFa(documento) {
     try {
       await client.connect();
-      const db = client.db("mauacompanhadoBD");
-      const collection = db.collection("topfas");
+      const db = client.db(mongoDB);
+      const collection = db.collection(mongoCollection);
       result = await collection.insertOne(documento);
     } catch (e) {
       logger.error(`${e.message}. Stack trace: ${e.stack}`);
@@ -31,12 +34,12 @@ async function consultaTopFas(topfa) {
     var data = []
     try {
       await client.connect();
-      const db = client.db("mauacompanhadoBD");
+      const db = client.db(mongoDB);
       var query = { status: "Enviado" }
       if (topfa != '') {
         query.topfa = topfa
       }
-      data = await db.collection('topfas').find(query).sort({ _id: 1 }).toArray();
+      data = await db.collection(mongoCollection).find(query).sort({ _id: 1 }).toArray();
     } catch (e) {
       logger.error(`${e.message}. Stack trace: ${e.stack}`);
       throw new Error(e);
@@ -50,8 +53,8 @@ async function consultaTopFas(topfa) {
 async function alteraStatusTopFa(document) {
     try {
       await client.connect();
-      const db = client.db("mauacompanhadoBD");
-      const collection = db.collection("topfas");
+      const db = client.db(mongoDB);
+      const collection = db.collection(mongoCollection);
       result = await collection.updateOne({ "_id": new ObjectID(document._id) }, { $set: {"status": "Mencionado" } });
     } catch (e) {
       logger.error(`${e.message}. Stack trace: ${e.stack}`);
