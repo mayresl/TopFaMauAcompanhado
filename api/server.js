@@ -2,15 +2,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dadosService = require("./src/services/dadosService");
 const { logger } = require('./src/services/loggerService');
+const { config } = require('./src/services/envConfigService');
 
 const app = express()
-const port = 3000;
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.listen(port, () => {
-    logger.info("Servidor node iniciado. URL: http://localhost:" + port);
+app.listen(config.SERVER_PORT, () => {
+    logger.info(`Servidor node iniciado. URL: ${config.SERVER_IP}:${config.SERVER_PORT}`);
 })
 
 app.post('/TopFa', async (req, res) => {

@@ -2,13 +2,9 @@ const {MongoClient, ServerApiVersion} = require('mongodb');
 var ObjectID = require('mongodb').ObjectId;
 
 const { logger } = require('./loggerService');
+const { config } = require('./envConfigService');
 
-var dotenv = require('dotenv');
-dotenv.config();
-
-const uri = process.env.MONGO_URI;
-
-const client = new MongoClient(uri, {
+const client = new MongoClient(config.MONGO_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -40,7 +36,7 @@ async function consultaTopFas(topfa) {
       if (topfa != '') {
         query.topfa = topfa
       }
-      data = await db.collection('topfas').find(query).sort({ dataHora: 1 }).toArray();
+      data = await db.collection('topfas').find(query).sort({ _id: 1 }).toArray();
     } catch (e) {
       logger.error(`${e.message}. Stack trace: ${e.stack}`);
       throw new Error(e);
