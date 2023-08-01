@@ -22,9 +22,7 @@ export class ProximosTopFasService {
     this.clipboard.copy(texto);
   }
 
-  async removeTopFas(selecionados: ProximosTopFasModel[]) {
-    const source$ = this.http.put('/api/TopFas', selecionados, { responseType: 'text' as 'text', withCredentials: false });
-    const response = await firstValueFrom(source$);
-    return response;
+  removeTopFas(selecionados: ProximosTopFasModel[]) {
+    return this.http.put('/api/TopFas', selecionados, { responseType: 'text' as 'text', withCredentials: false });
   }
 }

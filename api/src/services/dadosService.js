@@ -23,7 +23,7 @@ async function incluiTopFa(documento) {
       const collection = db.collection("topfas");
       result = await collection.insertOne(documento);
     } catch (e) {
-      logger.trace(e);
+      logger.error(`${e.message}. Stack trace: ${e.stack}`);
       throw new Error(e);
     }
     finally {
@@ -42,13 +42,12 @@ async function consultaTopFas(topfa) {
       }
       data = await db.collection('topfas').find(query).sort({ dataHora: 1 }).toArray();
     } catch (e) {
-      logger.trace(e);
+      logger.error(`${e.message}. Stack trace: ${e.stack}`);
       throw new Error(e);
     }
     finally {
       setTimeout(() => {client.close()}, 1500)
-    }
-  
+    }  
     return data
 }
 
@@ -59,7 +58,7 @@ async function alteraStatusTopFa(document) {
       const collection = db.collection("topfas");
       result = await collection.updateOne({ "_id": new ObjectID(document._id) }, { $set: {"status": "Mencionado" } });
     } catch (e) {
-      logger.trace(e);
+      logger.error(`${e.message}. Stack trace: ${e.stack}`);
       throw new Error(e);
     }
     finally {

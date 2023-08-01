@@ -20,7 +20,7 @@ export class NovoTopFaComponent {
     mensagem: ""
   }
 
-  async incluiTopFa() {
+  incluiTopFa() {
     if (this.formulario.nome == "" || this.formulario.topfa == "" || this.formulario.mensagem == "") {
       this.formInvalid = true;
     }
@@ -31,8 +31,16 @@ export class NovoTopFaComponent {
         topfa: this.formulario.topfa,
         mensagem: this.formulario.mensagem
       }
-      var r = await this.topFaService.incluiTopFa(obj);
-      this.feedback = r.replaceAll("\"", "");
+      this.topFaService.incluiTopFa(obj).subscribe(
+        {
+            next: (res) => {
+              this.feedback = res.replaceAll("\"", "");
+            },
+            error: () => {
+              this.feedback = "Erro ao inserir top fã. Por favor, tente novamente."
+            }
+        }
+      );
       this.limpaFormulario();
     }   
   }

@@ -25,11 +25,18 @@ export class ProximosTopFasComponent {
   }
 
   consultaTopFas(topfa: string) {
-    this.proximosTopFasService.consultaTopFas(topfa).subscribe(response => {
-      this.listaProximos = response as ProximosTopFasModel[];
-      this.valoresSelecionados = [];
-      this.checkboxTodos = false;
-    });
+    this.proximosTopFasService.consultaTopFas(topfa).subscribe(
+      {
+          next: (res) => {
+            this.listaProximos = res as ProximosTopFasModel[];
+            this.valoresSelecionados = [];
+            this.checkboxTodos = false;
+          },
+          error: () => {
+            this.feedback = "Erro ao consultar a lista. Por favor, tente novamente."
+          }
+      }
+    )
   }
 
   copiaTexto() {
@@ -43,8 +50,16 @@ export class ProximosTopFasComponent {
   async removeTopFas() {
     this.selecionados = [];
     if (this.validaTabela()) {
-      var r = await this.proximosTopFasService.removeTopFas(this.selecionados);
-      this.feedback = r.replaceAll("\"", ""); 
+      this.proximosTopFasService.removeTopFas(this.selecionados).subscribe(
+        {
+            next: (res) => {
+              this.feedback = res.replaceAll("\"", ""); 
+            },
+            error: () => {
+              this.feedback = "Erro ao remover top fã(s). Por favor, tente novamente."
+            }
+        }
+      )
       this.consultaTopFas("");     
     }
   }  

@@ -23,7 +23,7 @@ const logger = createLogger({
 });
 
 if (process.env.NODE_ENV !== 'prd') {
-    logger.add(new transports.Console({ format: customFormat}));
+    logger.add(new transports.Console({ format: format.simple() }));
 }
 
 module.exports = { logger }

@@ -29,7 +29,6 @@ app.post('/TopFa', async (req, res) => {
     }
     catch(e) {
         logger.error("Requisição POST para \/TopFa falhou.");
-        logger.trace(e);
         res.status(500).send(JSON.stringify(e))
     }
 })
@@ -45,7 +44,6 @@ app.get('/ProximosTopFas', async (req, res) => {
     }
     catch(e) {
         logger.error("Requisição GET para \/ProximosTopFas falhou.");
-        logger.trace(e);
         res.status(500).send(JSON.stringify(e))
     }
 })
@@ -67,7 +65,7 @@ app.put('/TopFas', async (req, res) => {
     });
 
     if (erro) {
-        logger.error("Requisição PUT para \/TopFas falhou. Verificar logs de dadosService para mais detalhes.");
+        logger.error("Requisição PUT para \/TopFas falhou. Verificar logs de exceções para mais detalhes.");
         res.status(500).send(JSON.stringify('Nem todos os registros foram atualizados. Por favor, tente novamente.'))
     }
     else {
