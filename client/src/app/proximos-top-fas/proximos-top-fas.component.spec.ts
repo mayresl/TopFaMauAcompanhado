@@ -8,7 +8,7 @@ describe('ProximosTopFasComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProximosTopFasComponent]
+      declarations: [ProximosTopFasComponent],
     });
     fixture = TestBed.createComponent(ProximosTopFasComponent);
     component = fixture.componentInstance;

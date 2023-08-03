@@ -7,6 +7,9 @@ export class NovoTopFaService {
   constructor(private http: HttpClient) {}
 
   incluiTopFa(obj: Object) {
-    return this.http.post('/api/TopFa', obj, { responseType: 'text' as 'text', withCredentials: false });
+    return this.http.post('/api/TopFa', obj, {
+      responseType: 'text' as 'text',
+      withCredentials: false,
+    });
   }
 }

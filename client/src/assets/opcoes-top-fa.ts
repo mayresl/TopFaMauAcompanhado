@@ -1,3 +1,3 @@
-var opcoes = ["Mau", "Vidane", "Mary Joe", "MaudaneJoe"];
+var opcoes = ['Mau', 'Vidane', 'Mary Joe', 'MaudaneJoe'];
 
-export { opcoes as OpcoesTopFa }
+export { opcoes as OpcoesTopFa };

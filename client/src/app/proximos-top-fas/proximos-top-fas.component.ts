@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
-import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model'
-import { ProximosTopFasService } from './proximos-top-fas.service'
-import { OpcoesTopFa } from 'src/assets/opcoes-top-fa'
+import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model';
+import { ProximosTopFasService } from './proximos-top-fas.service';
+import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 
 @Component({
   selector: 'app-proximos-top-fas',
   templateUrl: './proximos-top-fas.component.html',
   providers: [ProximosTopFasService],
-  styleUrls: ['./proximos-top-fas.component.css']
+  styleUrls: ['./proximos-top-fas.component.css'],
 })
 export class ProximosTopFasComponent {
   constructor(private proximosTopFasService: ProximosTopFasService) {}
@@ -16,58 +16,58 @@ export class ProximosTopFasComponent {
   listaProximos: ProximosTopFasModel[] = [];
   selecionados: ProximosTopFasModel[] = [];
   valoresSelecionados: number[] = [];
-  feedback = "";
+  feedback = '';
   opcoes = OpcoesTopFa;
   checkboxTodos = false;
 
   ngOnInit() {
-    this.consultaTopFas("");
+    this.consultaTopFas('');
   }
 
   consultaTopFas(topfa: string) {
-    this.proximosTopFasService.consultaTopFas(topfa).subscribe(
-      {
-          next: (res) => {
-            this.listaProximos = res as ProximosTopFasModel[];
-            this.valoresSelecionados = [];
-            this.checkboxTodos = false;
-          },
-          error: () => {
-            this.feedback = "Erro ao consultar a lista. Por favor, tente novamente."
-          }
-      }
-    )
+    this.proximosTopFasService.consultaTopFas(topfa).subscribe({
+      next: (res) => {
+        this.listaProximos = res as ProximosTopFasModel[];
+        this.valoresSelecionados = [];
+        this.checkboxTodos = false;
+      },
+      error: () => {
+        this.feedback =
+          'Erro ao consultar a lista. Por favor, tente novamente.';
+      },
+    });
   }
 
   copiaTexto() {
     this.selecionados = [];
     if (this.validaTabela()) {
       this.proximosTopFasService.copiaTexto(this.selecionados);
-      this.feedback = ""
+      this.feedback = '';
     }
   }
 
   async removeTopFas() {
     this.selecionados = [];
     if (this.validaTabela()) {
-      this.proximosTopFasService.removeTopFas(this.selecionados).subscribe(
-        {
-            next: (res) => {
-              this.feedback = res.replaceAll("\"", ""); 
-            },
-            error: () => {
-              this.feedback = "Erro ao remover top fã(s). Por favor, tente novamente."
-            }
-        }
-      )
-      this.consultaTopFas("");     
+      this.proximosTopFasService.removeTopFas(this.selecionados).subscribe({
+        next: (res) => {
+          this.feedback = res.replaceAll('"', '');
+        },
+        error: () => {
+          this.feedback =
+            'Erro ao remover top fã(s). Por favor, tente novamente.';
+        },
+      });
+      this.consultaTopFas('');
     }
-  }  
+  }
 
   alternaCheckbox(id: number): void {
-    this.feedback = ""
+    this.feedback = '';
     if (this.valoresSelecionados.includes(id)) {
-      this.valoresSelecionados = this.valoresSelecionados.filter((item) => item !== id);
+      this.valoresSelecionados = this.valoresSelecionados.filter(
+        (item) => item !== id,
+      );
     } else {
       this.valoresSelecionados.push(id);
     }
@@ -77,16 +77,15 @@ export class ProximosTopFasComponent {
     if (this.valoresSelecionados.length > 0) {
       this.filtraSelecao();
       return true;
-    }
-    else {
-      this.feedback = "Nenhum item da lista foi selecionado.";
+    } else {
+      this.feedback = 'Nenhum item da lista foi selecionado.';
       return false;
     }
   }
 
-  filtraSelecao() {    
-    this.valoresSelecionados.forEach(id => {
-      var aItem = this.listaProximos.filter(p => p._id == id);
+  filtraSelecao() {
+    this.valoresSelecionados.forEach((id) => {
+      var aItem = this.listaProximos.filter((p) => p._id == id);
       if (aItem.length > 0) {
         this.selecionados.push(aItem[0]);
       }
@@ -94,15 +93,14 @@ export class ProximosTopFasComponent {
   }
 
   marcaDesmarcaTodas(evento: any) {
-    this.feedback = "";
+    this.feedback = '';
     if (evento.target.checked) {
-      this.listaProximos.forEach(item => {
+      this.listaProximos.forEach((item) => {
         if (!this.valoresSelecionados.includes(item._id)) {
           this.valoresSelecionados.push(item._id);
         }
       });
-    }
-    else {
+    } else {
       this.valoresSelecionados = [];
     }
   }

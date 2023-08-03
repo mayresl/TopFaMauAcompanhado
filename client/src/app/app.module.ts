@@ -9,18 +9,9 @@ import { NovoTopFaComponent } from './novo-top-fa/novo-top-fa.component';
 import { ProximosTopFasComponent } from './proximos-top-fas/proximos-top-fas.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NovoTopFaComponent,
-    ProximosTopFasComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
+  declarations: [AppComponent, NovoTopFaComponent, ProximosTopFasComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

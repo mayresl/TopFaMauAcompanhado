@@ -1,15 +1,27 @@
 <div>
-  <label for="top-fa">Filtrar por: 
-    <select id="top-fa" name="top-fa" #topfa (change)="consultaTopFas(topfa.value)">
-        <option value="" selected>Todos</option>
-        <option *ngFor="let opcao of opcoes" >{{opcao}}</option>
+  <label for="top-fa"
+    >Filtrar por:
+    <select
+      id="top-fa"
+      name="top-fa"
+      #topfa
+      (change)="consultaTopFas(topfa.value)"
+    >
+      <option value="" selected>Todos</option>
+      <option *ngFor="let opcao of opcoes">{{ opcao }}</option>
     </select>
-</label>
+  </label>
 </div>
 <table>
   <thead>
     <tr>
-      <th><input type="checkbox" (change)="marcaDesmarcaTodas($event)" [(ngModel)]="checkboxTodos"></th>
+      <th>
+        <input
+          type="checkbox"
+          (change)="marcaDesmarcaTodas($event)"
+          [(ngModel)]="checkboxTodos"
+        />
+      </th>
       <th>Nome</th>
       <th>Top fã</th>
       <th>Mensagem</th>
@@ -18,7 +30,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of listaProximos">
-      <td><input type="checkbox" [value]="p._id" [checked]="estaMarcado(p._id)" (change)="alternaCheckbox(p._id)"></td>
+      <td>
+        <input
+          type="checkbox"
+          [value]="p._id"
+          [checked]="estaMarcado(p._id)"
+          (change)="alternaCheckbox(p._id)"
+        />
+      </td>
       <td>{{ p.nome }}</td>
       <td>{{ p.topfa }}</td>
       <td>{{ p.mensagem }}</td>
@@ -30,6 +49,6 @@
 <div>
   <button type="button" (click)="copiaTexto()">Copiar texto</button>
   <button type="button" (click)="removeTopFas()">Remover da lista</button>
-</div> 
+</div>
 
-<p *ngIf="feedback">{{feedback}}</p>
+<p *ngIf="feedback">{{ feedback }}</p>

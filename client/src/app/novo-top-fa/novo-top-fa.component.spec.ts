@@ -8,7 +8,7 @@ describe('NovoTopFaComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NovoTopFaComponent]
+      declarations: [NovoTopFaComponent],
     });
     fixture = TestBed.createComponent(NovoTopFaComponent);
     component = fixture.componentInstance;

@@ -25,6 +25,6 @@ Garanta que Angular v16.1.0 e Node (v18.16.1) estão instalados.
 - [ ] Melhorar front
 - [ ] Transformar em https
 - [ ] Adicionar componente de página não encontrada e redirecionar urls inválidas
-- [ ] Prettier?
+- [x] Prettier?
 - [ ] Pesquisar sobre boas práticas Angular/Node e implementar
 - [ ] Proteção da URL /listagem?

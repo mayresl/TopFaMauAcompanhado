@@ -6,11 +6,11 @@ import { ProximosTopFasComponent } from './proximos-top-fas/proximos-top-fas.com
 
 const routes: Routes = [
   { path: '', component: NovoTopFaComponent },
-  { path: 'listagem', component: ProximosTopFasComponent }
+  { path: 'listagem', component: ProximosTopFasComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
