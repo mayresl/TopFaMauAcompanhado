@@ -1,4 +1,7 @@
 const express = require('express')
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
 const bodyParser = require('body-parser')
 const dadosService = require("./src/services/dadosService");
 const { logger } = require('./src/services/loggerService');
@@ -8,9 +11,18 @@ const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.listen(config.SERVER_PORT, () => {
-    logger.info(`Servidor node iniciado. URL: ${config.SERVER_IP}:${config.SERVER_PORT}`);
+var options = {
+    //key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+    //cert: fs.readFileSync('test/fixtures/keys/agent2-cert.cert')
+}
+
+http.createServer(app).listen(config.HTTP_PORT, () => {
+    logger.info(`Servidor node HTTP iniciado. URL: ${config.SERVER_IP}:${config.HTTP_PORT}`);
 })
+
+//http.createServer(options, app).listen(config.HTTPS_PORT, () => {
+    //logger.info(`Servidor node HTTPS iniciado. URL: ${config.SERVER_IP}:${config.HTTPS_PORT}`);
+//})
 
 app.post('/TopFa', async (req, res) => {
     let documento = req.body

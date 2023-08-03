@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NovoTopFaComponent } from './novo-top-fa/novo-top-fa.component';
 import { ProximosTopFasComponent } from './proximos-top-fas/proximos-top-fas.component';
+import { Pagina404Component } from './pagina404/pagina404.component';
 
 @NgModule({
-  declarations: [AppComponent, NovoTopFaComponent, ProximosTopFasComponent],
+  declarations: [AppComponent, NovoTopFaComponent, ProximosTopFasComponent, Pagina404Component],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
