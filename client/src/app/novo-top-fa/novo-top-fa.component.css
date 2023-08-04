@@ -1,18 +1,110 @@
-textarea {
-  font-family: sans-serif;
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #eee;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
 }
 
 .form-container {
-  display: flex;
+  display: grid;
+
+  grid-template-areas: "nome"
+                       "topfa"
+                       "mensagem"
+                       "button";
   gap: 6px;
+  column-gap: 12px;
+  width: 100%;
+  padding: 0 20px;
+  max-width: 500px;
 }
 
-.form-container button {
-  height: 100%;
+@media (min-width: 768px) {
+  .form-container {
+    grid-template-areas: "nome topfa"
+                         "mensagem mensagem"
+                         "button button";
+  }
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.lbl-nome {
+  grid-area: nome;
+}
+
+.lbl-top-fa {
+  grid-area: topfa;
+}
+
+.lbl-mensagem {
+  grid-area: mensagem;
+}
+
+.titulo {
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 0 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #ced6e0;
+  transition: all 0.3s ease-in-out;
+  padding: 6px 10px;
+  margin-block-start: 4px;
+}
+
+input::placeholder, textarea::placeholder {
+  opacity: 0.3;
+}
+
+select {
+  -webkit-appearance: none;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC);
+  background-size: 12px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding-right: 12px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  width: 100%;
+  display: block;
+  user-select: none;
+}
+
+.button {
+  grid-area: button;
+  background-color: var(--dark-purple);
+  border: 1px solid var(--purple);
+  border-radius: 4px;
+  color: white;
+  margin-block-start: 8px;
+  font-size: 24px;
+
+  padding: 10px;
+}
+
+.feedback {
+  position: absolute;
+  bottom: 0;
 }
