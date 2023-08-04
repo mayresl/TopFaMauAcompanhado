@@ -13,32 +13,7 @@ import { ProximosTopFasService } from './proximos-top-fas.service';
 export class ProximosTopFasComponent {
   constructor(private proximosTopFasService: ProximosTopFasService) {}
 
-  listaProximos: ProximosTopFasModel[] = [
-    {
-      _id: 1,
-      nome: 'Gabriel',
-      topfa: 'Mau',
-      mensagem: 'Manda um salve pra mim!',
-      status: 'Mencionado',
-      dataHora: '',
-    },
-    {
-      _id: 2,
-      nome: 'Marcela Ayres',
-      topfa: 'Vidane',
-      mensagem: 'Manda um salve pra mim!',
-      status: 'Mencionado',
-      dataHora: '',
-    },
-    {
-      _id: 3,
-      nome: 'Baleia da Silva Silva',
-      topfa: 'Mary Joe',
-      mensagem: 'Manda um salve pra mim!',
-      status: 'Enviado',
-      dataHora: '',
-    },
-  ];
+  listaProximos: ProximosTopFasModel[] = [];
   selecionados: ProximosTopFasModel[] = [];
   valoresSelecionados: number[] = [];
   feedback = '';
