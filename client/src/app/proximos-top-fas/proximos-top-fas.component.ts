@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
+import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model';
 import { ProximosTopFasService } from './proximos-top-fas.service';
-import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 
 @Component({
   selector: 'app-proximos-top-fas',
@@ -13,7 +13,32 @@ import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 export class ProximosTopFasComponent {
   constructor(private proximosTopFasService: ProximosTopFasService) {}
 
-  listaProximos: ProximosTopFasModel[] = [];
+  listaProximos: ProximosTopFasModel[] = [
+    {
+      _id: 1,
+      nome: 'Gabriel',
+      topfa: 'Mau',
+      mensagem: 'Manda um salve pra mim!',
+      status: 'Mencionado',
+      dataHora: '',
+    },
+    {
+      _id: 2,
+      nome: 'Marcela Ayres',
+      topfa: 'Vidane',
+      mensagem: 'Manda um salve pra mim!',
+      status: 'Mencionado',
+      dataHora: '',
+    },
+    {
+      _id: 3,
+      nome: 'Baleia da Silva Silva',
+      topfa: 'Mary Joe',
+      mensagem: 'Manda um salve pra mim!',
+      status: 'Enviado',
+      dataHora: '',
+    },
+  ];
   selecionados: ProximosTopFasModel[] = [];
   valoresSelecionados: number[] = [];
   feedback = '';
