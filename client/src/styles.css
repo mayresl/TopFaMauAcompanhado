@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~normalize.css';
+
+:root {
+  --purple: #b76aea;
+  --dark-purple: #9924f8;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('/assets/images/img.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",sans-serif;
+}
