@@ -42,7 +42,7 @@ export class ProximosTopFasComponent {
     this.selecionados = [];
     if (this.validaTabela()) {
       this.proximosTopFasService.copiaTexto(this.selecionados);
-      this.feedback = '';
+      this.feedback = 'Texto copiado.';
     }
   }
 
@@ -52,6 +52,8 @@ export class ProximosTopFasComponent {
       this.proximosTopFasService.removeTopFas(this.selecionados).subscribe({
         next: (res) => {
           this.feedback = res.replaceAll('"', '');
+          this.valoresSelecionados = [];
+          this.checkboxTodos = false;
         },
         error: () => {
           this.feedback =
