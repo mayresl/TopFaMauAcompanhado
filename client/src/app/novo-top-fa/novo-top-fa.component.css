@@ -1,18 +1,59 @@
-textarea {
-  font-family: sans-serif;
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #eee;
 }
 
 .form-container {
-  display: flex;
+  display: grid;
+
+  grid-template-areas: "nome"
+                       "topfa"
+                       "mensagem"
+                       "button";
   gap: 6px;
+  column-gap: 12px;
+  width: 100%;
+  padding: 0 20px;
+  max-width: 500px;
 }
 
-.form-container button {
-  height: 100%;
+@media (min-width: 768px) {
+  .form-container {
+    grid-template-areas: "nome topfa"
+                         "mensagem mensagem"
+                         "button button";
+  }
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.lbl-nome {
+  grid-area: nome;
+}
+
+.lbl-top-fa {
+  grid-area: topfa;
+}
+
+.lbl-mensagem {
+  grid-area: mensagem;
+}
+
+.titulo {
+  text-shadow: rgba(0, 0, 0, 0.5) 1px 0 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  display: block;
+}
+
+.feedback {
+  position: absolute;
+  bottom: 0;
 }

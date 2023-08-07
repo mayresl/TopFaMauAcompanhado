@@ -1,4 +1,5 @@
-<div>
+<div class="container">
+  <h1>Top fãs</h1>
   <label for="top-fa"
     >Filtrar por:
     <select
@@ -11,44 +12,43 @@
       <option *ngFor="let opcao of opcoes">{{ opcao }}</option>
     </select>
   </label>
-</div>
-<table>
-  <thead>
-    <tr>
-      <th>
-        <input
-          type="checkbox"
-          (change)="marcaDesmarcaTodas($event)"
-          [(ngModel)]="checkboxTodos"
-        />
-      </th>
-      <th>Nome</th>
-      <th>Top fã</th>
-      <th>Mensagem</th>
-      <th>Data</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of listaProximos">
-      <td>
-        <input
-          type="checkbox"
-          [value]="p._id"
-          [checked]="estaMarcado(p._id)"
-          (change)="alternaCheckbox(p._id)"
-        />
-      </td>
-      <td>{{ p.nome }}</td>
-      <td>{{ p.topfa }}</td>
-      <td>{{ p.mensagem }}</td>
-      <td>{{ p.dataHora }}</td>
-    </tr>
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <input
+            type="checkbox"
+            (change)="marcaDesmarcaTodas($event)"
+            [(ngModel)]="checkboxTodos"
+          />
+        </th>
+        <th>Nome</th>
+        <th>Top fã</th>
+        <th>Mensagem</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of listaProximos">
+        <td>
+          <input
+            type="checkbox"
+            [value]="p._id"
+            [checked]="estaMarcado(p._id)"
+            (change)="alternaCheckbox(p._id)"
+          />
+        </td>
+        <td>{{ p.nome }}</td>
+        <td>{{ p.topfa }}</td>
+        <td>{{ p.mensagem }}</td>
+        <td>{{ p.dataHora }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <button type="button" (click)="copiaTexto()">Copiar texto</button>
+    <button type="button" (click)="removeTopFas()">Remover da lista</button>
+  </div>
 
-<div>
-  <button type="button" (click)="copiaTexto()">Copiar texto</button>
-  <button type="button" (click)="removeTopFas()">Remover da lista</button>
+  <p *ngIf="feedback">{{ feedback }}</p>
 </div>
-
-<p *ngIf="feedback">{{ feedback }}</p>

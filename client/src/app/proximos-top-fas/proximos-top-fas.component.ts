@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
+import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 import { ProximosTopFasModel } from 'src/shared/models/proximos-top-fas.model';
 import { ProximosTopFasService } from './proximos-top-fas.service';
-import { OpcoesTopFa } from 'src/assets/opcoes-top-fa';
 
 @Component({
   selector: 'app-proximos-top-fas',
