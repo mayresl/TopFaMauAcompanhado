@@ -42,7 +42,7 @@ export {urlLista};
 - [x] Centralizar configurações
 - [x] Adicionar dbname e collection em config
 - [ ] Proteção de APIs? (cross origin)
-- [ ] Melhorar front
+- [x] Melhorar front
 - [ ] Transformar em https
 - [x] Adicionar componente de página não encontrada e redirecionar urls inválidas
 - [x] Prettier
