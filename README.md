@@ -49,3 +49,4 @@ export {urlLista};
 - [ ] Pesquisar sobre boas práticas Angular/Node e implementar
 - [x] Proteção da URL /listagem
 - [ ] Criar base de dados de desenvolvimento
+- [ ] Autenticação?
